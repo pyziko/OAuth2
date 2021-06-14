@@ -86,6 +86,6 @@ class SetPassword(Resource):
         user.password = bcrypt.generate_password_hash(user_data.password)
         user.save_to_db()
 
-        return {"message": gettext("user_password_updated")}, 201
+        return {"message": gettext("user_password_updated")}, 200
 
 

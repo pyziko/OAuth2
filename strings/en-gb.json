@@ -5,5 +5,5 @@
   "user_invalid_credentials": "Invalid credentials!",
   "user_registered": "Account created successfully.",
   "user_password_updated": "User password updated successfully",
-  "no_password_set": "you logged in with Github, Login with github again or set password"
+  "no_password_set": "you logged in with Github, Login with github again or set password "
 }
