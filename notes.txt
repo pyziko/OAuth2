@@ -1,0 +1,16 @@
+1. g can only be used in a request context, else it won't work
+2. every request has its own g. hence does not keep its content when moving to another request
+
+# we use g to pass access_token to   @github.tokengetter in oa for cleaner code
+then we can localhost:5000/login/github  to fetch username
+
+then in the GithubLoginResource
+after retrieving the username, we can save it to our db without a password and generate a token for them to be able to
+then access our app resources
+
+
+What if user wants to login with username and password
+see impl in SetPassword in user resources
+
+hence with the above, we can choose to login with github, then set our password
+then login with our github username and new password
