@@ -9,6 +9,7 @@ load_dotenv(".env")  # to ensure environment variables is loaded before we proce
 from db import db
 from ma import ma
 from oa import oauth
+from bc import bcrypt
 from resources.user import UserRegister, UserLogin, User, SetPassword
 from resources.github_login import GithubLogin, GithubAuthorize
 
@@ -41,4 +42,5 @@ if __name__ == "__main__":
     db.init_app(app)
     ma.init_app(app)
     oauth.init_app(app)
+    bcrypt.init_app(app)
     app.run(port=5000)

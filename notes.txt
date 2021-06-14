@@ -25,3 +25,7 @@ USING
     # our internal remains /login/github/authorized
     # while external http://localhost:5000/login/github/authorized
     # hence if ip changes no need for hardcoding
+
+
+HASHING PASSWORD. INCASE USER sets password
+OR REGISTERS WITH PASSWORD

@@ -6,11 +6,11 @@ from flask_jwt_extended import (
     create_access_token,
     create_refresh_token, jwt_required
 )
+
+from bc import bcrypt
 from libs.strings import gettext
 from models.user import UserModel
 from schemas.user import UserSchema
-
-from libs.test_flask_lib import function_accessing_global
 
 user_schema = UserSchema()
 
@@ -19,6 +19,7 @@ class UserRegister(Resource):
     @classmethod
     def post(cls):
         user_json = request.get_json()
+        user_json["password"] = bcrypt.generate_password_hash(user_json["password"])
         user = user_schema.load(user_json)
 
         if UserModel.find_by_username(user.username):
@@ -63,7 +64,7 @@ class UserLogin(Resource):
 
         if not user.password:
             return {"message": "no_password_set"}
-        if user and hmac.compare_digest(user.password, user_data.password):
+        if user and bcrypt.check_password_hash(user.password, user_data.password):
             access_token = create_access_token(identity=user.id, fresh=True)
             refresh_token = create_refresh_token(user.id)
             return {"access_token": access_token, "refresh_token": refresh_token}, 200
@@ -82,7 +83,7 @@ class SetPassword(Resource):
         if not user:
             return {"message": gettext("user_not_found")}, 400
 
-        user.password = user_data.password
+        user.password = bcrypt.generate_password_hash(user_data.password)
         user.save_to_db()
 
         return {"message": gettext("user_password_updated")}, 201
