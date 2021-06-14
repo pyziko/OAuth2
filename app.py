@@ -35,7 +35,7 @@ api.add_resource(User, "/user/<int:user_id>")
 api.add_resource(UserLogin, "/login")
 api.add_resource(SetPassword, "/user/password")
 api.add_resource(GithubLogin, "/login/github")
-api.add_resource(GithubAuthorize, "/login/github/authorized")   # same as registered on github as the reidrect_url
+api.add_resource(GithubAuthorize, "/login/github/authorized", endpoint="github.authorize")   #  same as registered on github as the reidrect_url
 
 if __name__ == "__main__":
     db.init_app(app)

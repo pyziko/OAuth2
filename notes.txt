@@ -5,7 +5,7 @@
 then we can localhost:5000/login/github  to fetch username
 
 then in the GithubLoginResource
-after retrieving the username, we can save it to our db without a password and generate a token for them to be able to
+after retrieving the username, we can save it to our db WITHOUT A PASSWORD and generate a token for them to be able to
 then access our app resources
 
 
@@ -14,3 +14,14 @@ see impl in SetPassword in user resources
 
 hence with the above, we can choose to login with github, then set our password
 then login with our github username and new password
+
+#####NOTE
+url_for("github.authorize", _external=True) is same as
+#callback="http://localhost:5000/login/github/authorized"
+
+But advantage
+USING
+    #  external is for full url building
+    # our internal remains /login/github/authorized
+    # while external http://localhost:5000/login/github/authorized
+    # hence if ip changes no need for hardcoding
