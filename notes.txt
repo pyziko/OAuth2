@@ -29,3 +29,4 @@ USING
 
 HASHING PASSWORD. INCASE USER sets password
 OR REGISTERS WITH PASSWORD
+ Use bcrpyt hashing checkout bc, user under resources for implementation
